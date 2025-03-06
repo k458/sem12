@@ -1,6 +1,7 @@
 package com.k458.sem12.controller;
 
 import com.k458.sem12.model.Person;
+import com.k458.sem12.model.PersonDecorator;
 import com.k458.sem12.service.IFileGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +31,9 @@ public class PController {
             "name":"bastard"
         }
         */
-        p.setId(5L);
+        p.setId(1L);
         p.setCreatedTime(LocalDateTime.now().toString());
-        fileGateway.writeToFile(p.getName()+".txt", p.toString());
+        fileGateway.writeToFile(p.getName()+".txt", new PersonDecorator(p).toString());
         return ResponseEntity.ok(p);
     }
 
